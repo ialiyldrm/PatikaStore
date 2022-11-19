@@ -1,5 +1,8 @@
 public class Notebook extends ProductGroup {
 
+    public Notebook(){
+        
+    }
     public Notebook(int id, String name, double price, int discountRate, int stock, double screenSize, int ram,
             int storage, Brands brand) {
         super(id, name, price, discountRate, stock, screenSize, ram, storage, brand);

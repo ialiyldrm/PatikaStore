@@ -28,11 +28,21 @@ public class Brands {
         brandList.add(new Brands(9,"Monster"));
     }
     public static void printBrands() {
+        createBrands();
         System.out.println("Brand List");
         for (Brands brand : brandList) {
-            System.out.println("- " + brand.getBrandName());
+            System.out.println(brand.getBrandID()+"- " + brand.getBrandName());
         }
         System.out.println("----------------------------");
+    }
+    public static Brands getBrand(int id){
+        Brands temp=null;
+        for (Brands brand : brandList) {
+            if(id==brand.getBrandID()){
+                temp=brand;
+            }
+        }
+        return temp;
     }
 
     public int getBrandID() {

@@ -17,12 +17,15 @@ public class App {
             switch(select){
                 case 1:
                     System.out.println("Notebook Transactions");
+                    Notebook notebook=new Notebook();
+                    notebook.menu();
                     break;
                 case 2:
                     System.out.println("Mobile Phone Transactions");
+                    MobilePhone phone=new MobilePhone();
+                    phone.menu();
                     break;
                 case 3:
-                    Brands.createBrands();
                     Brands.printBrands();
                     break;
                 case 0:

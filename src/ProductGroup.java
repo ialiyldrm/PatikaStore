@@ -8,6 +8,10 @@ public abstract class ProductGroup {
     private int ram;
     private int storage;
     private Brands brand;
+    
+    public ProductGroup(){
+
+    }
 
     public ProductGroup(int id, String name, double price, int discountRate, int stock, double screenSize, int ram,
             int storage, Brands brand) {
