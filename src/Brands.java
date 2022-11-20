@@ -1,9 +1,11 @@
 import java.util.Comparator;
+import java.util.Scanner;
 import java.util.TreeSet;
 
 public class Brands {
     private int brandID;
     private String brandName;
+    private static Scanner input=new Scanner(System.in);
     private static TreeSet<Brands> brandList=new TreeSet<>(new Comparator<Brands>() {
         @Override
         public int compare(Brands o1, Brands o2) {
@@ -16,6 +18,25 @@ public class Brands {
         this.brandName = brandName;
     }
 
+    public static void addBrand(){
+        System.out.print("Enter brand id:");
+        int id=input.nextInt();
+        System.out.print("Enter brand name:");
+        String name=input.next();
+        brandList.add(new Brands(id, name));    
+    }
+
+    public static void deleteBrand(){
+        printBrands();
+        System.out.print("Enter the id of the brand you want to delete:");
+        int id=input.nextInt();
+        for (Brands brand : brandList) {
+            if(id==brand.getBrandID()){
+                brandList.remove(brand);
+                break;
+            }           
+        }
+    }
     public static void createBrands(){
         brandList.add(new Brands(1,"Samsung"));
         brandList.add(new Brands(2,"Lenovo"));
@@ -29,6 +50,7 @@ public class Brands {
     }
     public static void printBrands() {
         createBrands();
+        System.out.println();
         System.out.println("Brand List");
         for (Brands brand : brandList) {
             System.out.println(brand.getBrandID()+"- " + brand.getBrandName());

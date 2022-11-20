@@ -5,7 +5,7 @@ public class MobilePhone extends ProductGroup {
     private int battery;
     private String color;
     private static ArrayList<MobilePhone> phoneList = new ArrayList<>();
-    Scanner scan=new Scanner(System.in);
+    private Scanner scan=new Scanner(System.in);
 
     public MobilePhone(){
 
@@ -20,11 +20,12 @@ public class MobilePhone extends ProductGroup {
 
     @Override
     public void menu() {
-        System.out.println("1-Telefon Listesini Görüntüle\n"+
-                           "2-Yeni telefon ekle\n"+
-                           "3-Telefon Sil\n"+
-                           "4-Telefonları id'ye göre sırala\n"+
-                           "5-Telefonları markalarına göre filtrele");
+        System.out.println("1-View Phone List\n"+
+                           "2-Add new phone\n"+
+                           "3-Delete Phone\n"+
+                           "4-Sort phones by id\n"+
+                           "5-Filter phones by brands\n"+
+                           "0-Back to the panel!");
         System.out.println();
         System.out.print("Your select:");
         int select= scan.nextInt();
@@ -44,6 +45,8 @@ public class MobilePhone extends ProductGroup {
             case 5:
                 brandFilter();
                 break;
+            case 0:
+                break;
             default:
                 System.out.println("There is no such an option. Please enter your choice again.");
                 break;
@@ -54,7 +57,7 @@ public class MobilePhone extends ProductGroup {
     private void brandFilter() {
         getProduct();
         ArrayList<MobilePhone> filterMobilePhones=new ArrayList<>();
-        System.out.print("Filtrelemek istediğiniz markasını giriniz:");
+        System.out.print("Enter the brand you want to filter:");
         String filterBrand=scan.next();
         for(MobilePhone phone:phoneList){
             if(filterBrand.equals(phone.getBrand().getBrandName())){
@@ -67,39 +70,39 @@ public class MobilePhone extends ProductGroup {
 
     @Override
     public void addItem() {
-        System.out.println("Telefon id giriniz;");
+        System.out.println("Enter the phone id;");
         int id =scan.nextInt();
-        System.out.println("Tefonun adını giriniz:");
+        System.out.println("Enter the name of the phone:");
         String name=scan.next();
-        System.out.println("Telefonun fiyatını giriniz:");
+        System.out.println("Enter the price of the phone:");
         double price=scan.nextDouble();
-        System.out.println("İndirim oranını giriniz:");
+        System.out.println("Enter the discount rate:");
         int discountRate=scan.nextInt();
-        System.out.println("Stok sayısını giriniz:");
+        System.out.println("Enter the number of stocks:");
         int stock=scan.nextInt();
-        System.out.println("Ekran boyutu giriniz:");
+        System.out.println("Enter screen size:");
         double screenSize = scan.nextDouble();
-        System.out.println("Ram boyutunu giriniz:");
+        System.out.println("Enter ram size:");
         int ram=scan.nextInt();
-        System.out.println("Telefon hafıza boyutu giriniz:");
+        System.out.println("Enter phone memory size:");
         int storage=scan.nextInt();
-        System.out.println("Telefon batarya boyutu giriniz:");
+        System.out.println("Enter phone battery size:");
         int battery=scan.nextInt();
-        System.out.println("Telefon rengi giriniz:");
+        System.out.println("Enter phone color:");
         String color=scan.next();
 
         Brands.printBrands();
-        System.out.println("Marka id seçiniz:");
+        System.out.println("Please choose brand id:");
         Brands brand=Brands.getBrand(scan.nextInt());
         MobilePhone phone=new MobilePhone(id, name, price, discountRate, stock, screenSize, ram, storage, brand, battery, color);
         phoneList.add(phone);
-        System.out.println("Eklenen telefon id:" + phone.getId());
+        System.out.println("Added Phone" + phone.getId() + "-"+ phone.getName());
     }
 
     public void print(ArrayList<MobilePhone> phones){
         if(phones==null) phones=phoneList;
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("| ID | Ürün Adı                  | Fiyatı          | Markası         | Stoğu        | İndirim Oranı      | RAM    | Ekran Boyutu      | Hafızası   | Pil Kapasitesi  | Renk           |");
+        System.out.println("| ID | Product Name                  | Price          | Brand         | Stock        | Discount Rate      | RAM    | Screen Size      | Memory   | Battery Capacity  | Color           |");
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for (MobilePhone n:phones){
@@ -118,10 +121,10 @@ public class MobilePhone extends ProductGroup {
     @Override
     public void deleteItem() {
         getProduct();
-        System.out.print("Silinmesini istediğiniz ürünün id'sini giriniz:");
+        System.out.print("Enter the id of the product you want to be deleted:");
         int id=scan.nextInt();
         phoneList.remove(id-1);
-        System.out.println("Güncel liste");
+        System.out.println("Current list");
         getProduct();
         
     }
